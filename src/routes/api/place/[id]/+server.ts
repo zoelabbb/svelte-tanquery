@@ -1,10 +1,10 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { env } from '$env/dynamic/private';
 
 export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const { id } = params;
-		const apiUrl = `${PUBLIC_API_URL}/place/${id}`;
+		const apiUrl = `${env.API_URL}/place/${id}`;
 
 		const res = await fetch(apiUrl);
 		if (!res.ok) {

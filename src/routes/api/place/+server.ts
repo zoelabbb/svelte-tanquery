@@ -1,12 +1,12 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { env } from '$env/dynamic/private';
 
 export const GET: RequestHandler = async ({ url }) => {
 	try {
 		const page = url.searchParams.get('page') || '1';
 		const limit = url.searchParams.get('limit') || '10';
 		
-		const apiUrl = `${PUBLIC_API_URL}/place?page=${page}&limit=${limit}`;
+		const apiUrl = `${env.API_URL}/place?page=${page}&limit=${limit}`;
 
 		const res = await fetch(apiUrl);
 		if (!res.ok) {
